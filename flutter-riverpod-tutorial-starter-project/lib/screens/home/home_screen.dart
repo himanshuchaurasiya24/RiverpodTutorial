@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_files/providers/cart_provider.dart';
 import 'package:riverpod_files/providers/products_provider.dart';
 import 'package:riverpod_files/shared/cart_icon.dart';
 
@@ -10,7 +11,9 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    debugPrint('HomeScreen rebuild');
     final allProducts = ref.watch(productsProvider);
+    final cartProducts = ref.watch(cartNotifierProvider);
     return Scaffold(
       // backgroundColor: Colors.grey[50],
       appBar: AppBar(
@@ -30,16 +33,16 @@ class HomeScreen extends ConsumerWidget {
           ),
           itemBuilder: (context, index) {
             return Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 20),
               color: Colors.blueGrey.withOpacity(0.05),
               child: Column(
                 children: [
                   Image.asset(
                     allProducts[index].image,
-                    width: 60,
-                    height: 60,
+                    width: 50,
+                    height: 50,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Text(
                     allProducts[index].title,
                     style: const TextStyle(
@@ -47,15 +50,27 @@ class HomeScreen extends ConsumerWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Text(
                     '\$${allProducts[index].price}',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
                     ),
                   ),
+                  const SizedBox(height: 5),
+                  TextButton(
+                      onPressed: () {
+                        if(cartProducts.contains(allProducts[index])){
+                          ref.read(cartNotifierProvider.notifier).removeProduct(allProducts[index]);
+                        } else {
+                          ref.read(cartNotifierProvider.notifier).addProduct(allProducts[index]);
+                        }
+                      },
+                      child: Text(cartProducts.contains(allProducts[index])
+                          ? "Remove"
+                          : 'Add to Cart')),
                 ],
               ),
             );
