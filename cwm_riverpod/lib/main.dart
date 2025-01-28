@@ -1,20 +1,27 @@
-// import 'package:cwm_riverpod/home_screen.dart';
-import 'package:cwm_riverpod/provider_cwm.dart';
+// ignore_for_file: unused_import
+
+import 'package:cwm_riverpod/different_providers/landing_future_provider.dart';
+import 'package:cwm_riverpod/riverpod_cwm.dart';
+import 'package:cwm_riverpod/different_providers/state_providers.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-      // const ProviderScope(
-      //   child: MyApp(),
-      // ),
-      Provider<String>(
-    create: (context) {
-      return 'I\'m riverpod';
-    },
-    child: MyApp(),
-  ));
+    // UpdateCheck(),
+    // const ProviderScope(
+    //   child: MyApp(),
+    // ),
+    // Provider<String>(
+    //   create: (context) {
+    //     return 'I\'m riverpod';
+    //   },
+    //   child: MyApp(),
+    // ),
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,12 +37,15 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      // home: const HomeScreen(),
-      home:  Provider<String>(
-        create: (context) {
-          return 'I\'m riverpod child';
-        },
-        child: ProviderCWM()),
+      // home: Provider<String>(
+      //   create: (context) {
+      //     return 'I\'m riverpod child';
+      //   },
+      //   child: ProviderCWM(),
+      // ),
+      // home: RiverpodCwm(),
+      // home: OurStateProvider(),
+      home: LandingFutureProvider(),
     );
   }
 }
