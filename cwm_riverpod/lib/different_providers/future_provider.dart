@@ -63,7 +63,7 @@ class WeatherScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final futureQuotes = ref.watch(futureQuotesProvider);
-    final futureTime = ref.watch(futureTimeProvider);
+    // final futureTime = ref.watch(futureTimeProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Future Provider...'),

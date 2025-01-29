@@ -5,7 +5,6 @@ import 'package:cwm_riverpod/riverpod_cwm.dart';
 import 'package:cwm_riverpod/different_providers/state_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 void main() {
   runApp(
     // UpdateCheck(),
