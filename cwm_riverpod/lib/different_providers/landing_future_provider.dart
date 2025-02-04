@@ -24,8 +24,8 @@ class LandingFutureProvider extends StatelessWidget {
                 builder: (context) {
                   // return const WeatherScreen();
                   // return const StreamProviderExample();
-                  // return  ChangeNotifierProviderExample();
-                  return  StateNotifierProviderExample();
+                  return  ChangeNotifierProviderExample();
+                  // return  StateNotifierProviderExample();
                 },
               ),
             );

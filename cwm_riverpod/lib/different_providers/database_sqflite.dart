@@ -1,8 +1,16 @@
-/*
-****** TO CREATE DATABASE ******
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
+// ****** TO CREATE DATABASE ******
+import 'package:path/path.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:flutter/material.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'database_helper.dart';
+// import 'database_helper.dart';
+
+final databaseHelperProvider = Provider<DatabaseHelper>((ref) {
+  return DatabaseHelper();
+});
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
   static Database? _database;
@@ -69,23 +77,19 @@ class DatabaseHelper {
     );
   }
 }
-***** CREATING A PROVIDER USING RIVERPOD *****
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'database_helper.dart';
+// ***** CREATING A PROVIDER USING RIVERPOD *****
 
-final databaseHelperProvider = Provider<DatabaseHelper>((ref) {
-  return DatabaseHelper();
-});
-***** USING IT IN WIDGETS *****
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'database_helper.dart';
+
+
+
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -94,7 +98,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ***** USING IT IN WIDGETS *****
 class HomeScreen extends ConsumerWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final databaseHelper = ref.watch(databaseHelperProvider);
@@ -111,14 +118,14 @@ class HomeScreen extends ConsumerWidget {
               onPressed: () async {
                 final item = {'name': 'Item 1', 'quantity': 10};
                 final id = await databaseHelper.insertItem(item);
-                print('Item inserted with id: $id');
+                debugPrint('Item inserted with id: $id');
               },
               child: Text('Insert Item'),
             ),
             ElevatedButton(
               onPressed: () async {
                 final items = await databaseHelper.getItems();
-                print('Items: $items');
+                debugPrint('Items: $items');
               },
               child: Text('Get Items'),
             ),
@@ -128,4 +135,3 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 }
-*/

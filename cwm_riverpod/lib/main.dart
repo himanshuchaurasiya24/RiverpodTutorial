@@ -1,5 +1,8 @@
 // ignore_for_file: unused_import
 
+import 'package:cwm_riverpod/different_providers/counter_app_screen.dart';
+import 'package:cwm_riverpod/different_providers/database_sqflite.dart';
+import 'package:cwm_riverpod/different_providers/dummy_home_screen.dart';
 import 'package:cwm_riverpod/different_providers/landing_future_provider.dart';
 import 'package:cwm_riverpod/riverpod_cwm.dart';
 import 'package:cwm_riverpod/different_providers/state_providers.dart';
@@ -44,7 +47,9 @@ class MyApp extends StatelessWidget {
       // ),
       // home: RiverpodCwm(),
       // home: OurStateProvider(),
-      home: LandingFutureProvider(),
+      // home: LandingFutureProvider(),
+      // home: HomeScreen(),
+      home: DummyHomeScreen(),
     );
   }
 }
