@@ -1,4 +1,5 @@
 import 'package:cwm_riverpod/different_providers/counter_app_screen.dart';
+import 'package:cwm_riverpod/different_providers/family_modifier_Screen.dart';
 import 'package:flutter/material.dart';
 
 class DummyHomeScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class DummyHomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CounterAppScreen()));
+                          builder: (context) => FamilyModifierScreen()));
                 },
                 child: Text('Family Modifier')),
           ],
